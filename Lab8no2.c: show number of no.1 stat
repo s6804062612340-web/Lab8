@@ -16,7 +16,7 @@ int main() {
 
 char keys[10]={'D','B','D','C','C','D','A','E','A','D'};
 char s[10];
-char q1[10];
+char q1[8];
 int  c1[1]={0};
 for(i=0;i<8;i++){
     q1[i]=ans[i][0];
