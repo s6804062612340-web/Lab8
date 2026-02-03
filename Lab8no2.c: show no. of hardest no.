@@ -1,5 +1,5 @@
 #include <stdio.h>
-int checkscore(char std[]);
+int checkscore(char std[],int hard[]);
 int checkfirst(char x1[],int x2[]);
 
 int main() {
@@ -17,24 +17,33 @@ int main() {
 char keys[10]={'D','B','D','C','C','D','A','E','A','D'};
 char s[10];
 char q1[8];
-int  c1[1]={0};
+int c1[1]={0};
+int hard[10]={0};
+int hardest=10,index_choice=0;
 for(i=0;i<8;i++){
     q1[i]=ans[i][0];
     for(j=0;j<10;j++){
     s[j]=ans[i][j];
                     }
-    printf("std %d => %d\n", (i+1), checkscore(s));
+    printf("std %d => %d\n", (i+1), checkscore(s,hard));
     }
     checkfirst(q1,c1);
-    printf("Q1 have std corrected: %d",c1[0]);
+    printf("Q1 have student corrected : %d\n",c1[0]);
+    for(j=0;j<10;j++){
+    if(hardest>hard[j]){
+    hardest=hard[j];
+    index_choice=j;}
+                    }
+    printf("The most difficult question is: %d\n",index_choice+1);
 }
 
-int checkscore(char std[]){
-     char keys[10]={'D','B','D','C','C','D','A','E','A','D'};
-     int x=0;
-     for(int i=0;i<10;i++){
-        if(keys[i]==std[i])
-         x++;
+int checkscore(char std[],int hard[]){
+    char keys[10]={'D','B','D','C','C','D','A','E','A','D'};
+    int x=0;
+    for(int i=0;i<10;i++){
+        if(keys[i]==std[i]){
+        hard[i]++;
+        x++;}
      }
     return x;
 }
