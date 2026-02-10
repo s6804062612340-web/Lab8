@@ -1,0 +1,76 @@
+#include <stdio.h>
+int findMax(int num[],int ArSize);
+void printAr(int myAr[],int ArSize);
+void addone(int number[], int add[], int sizeNum);
+void addtwo(int number[], int pos[], int x, int sizeNum, int sizePos);
+void addthree(int number[],int poss[][2],int possize);
+
+int main() {
+	int number[3] = {210,50,100} , add[3]={190,50,100};
+	int score[10] = {1,2,3,4,5,6,7,8,9,10} , max; 
+	int pos[2]= {0,2} , x=5;
+	int poss[2][2]={{1,100},
+					{2,200}};
+	int numberSize=(sizeof(number)/sizeof(number[0]));
+	int possize=(sizeof(pos)/sizeof(pos[0]));	 //เอาไว้ลูป arraypos เมื่อไม่ทราบ size
+	int possize2=(sizeof(poss)/sizeof(poss[0])); //เอาไว้ลูป arrayposs เมื่อไม่ทราบ size
+	
+	printAr(number,numberSize);
+	max = findMax(number,numberSize);
+	printAr(score,10);
+	printf("Maximum of these number is %d\n",max);
+
+	//1.1
+	addone(number,add,numberSize); 
+	printAr(number,numberSize);    //เพิ่มค่าโดย Fuction addone แล้ว
+
+	//1.2
+	addtwo(number,pos,x,numberSize,possize);
+	printAr(number,numberSize);   //เพิ่มค่าโดย Fuction addtwo แล้ว
+
+	//1.3
+	addthree(number,poss,possize2);
+	printAr(number,numberSize);   //เพิ่มค่าโดย Fuction addthree แล้ว
+}
+
+void printAr(int myAr[],int ArSize) {
+	int i;
+
+	for (i=0;i<ArSize;i++) 
+		printf("%d ",myAr[i]);
+	printf("\n");
+}
+
+int findMax(int num[],int ArSize) {
+	int maximum,i;
+	maximum = num[0];
+
+	for(i=1;i<ArSize;i++) {
+		if(num[i] > maximum)
+			maximum = num[i];
+	}
+	return maximum;
+}
+
+void addone(int number[], int add[], int sizeNum){
+	for(int i=0; i<sizeNum; i++){
+		number[i]+=add[i];
+	}
+
+}
+
+void addtwo(int number[], int pos[], int x, int sizeNum, int sizePos){
+	for(int i=0 ; i<sizePos ; i++ ){
+	int l=pos[i];
+	number[l]+=x;}
+
+}
+
+void addthree(int number[],int pos[][2],int possize){
+	for(int i=0; i<possize ;i++){
+		int l=pos[i][0];
+		int x=pos[i][1];
+		number[l]+=x;
+	}
+
+}
